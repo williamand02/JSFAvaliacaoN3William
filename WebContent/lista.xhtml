@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Listar</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:commandLink value="Cadastro" action="cadastro.xhtml"
+			immediate="true" />
+		<span>|</span>
+		<h:commandLink value="Listar" action="lista.xhtml" immediate="true" />
+		<h1>Lista de Bens</h1>
+		<h:messages />
+		<h:dataTable border="1" value="#{bensControllerWilliam.lista}"
+			var="bens">
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{bens.id_bem}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Descrição" />
+				</f:facet>
+				<h:outputText value="#{bens.desc_bem}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Códgio" />
+				</f:facet>
+				<h:outputText value="#{bens.codigo_bem}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Classificação" />
+				</f:facet>
+				<h:outputText value="#{bens.classificacao_bem}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor" />
+				</f:facet>
+				<h:outputText value="#{bens.valor_bem}">
+					<f:convertNumber pattern="#,##0.00" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data de aquisição" />
+				</f:facet>
+				<h:outputText value="#{bens.data_aquisicao_bem}">
+					<f:convertDateTime pattern="dd/MM/yyyy"
+						timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ação" />
+				</f:facet>
+				<h:commandButton value="Editar"
+					action="#{bensControllerWilliam.editar}">
+					<f:setPropertyActionListener value="#{bens}"
+						target="#{bensControllerWilliam.bens}" />
+				</h:commandButton>
+				<h:commandButton value="Excluir"
+					action="#{bensControllerWilliam.excluir}">
+					<f:setPropertyActionListener value="#{bens}"
+						target="#{bensControllerWilliam.bens}" />
+				</h:commandButton>
+			</h:column>
+
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
